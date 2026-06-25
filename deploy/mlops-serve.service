@@ -1,0 +1,17 @@
+[Unit]
+Description=MLOps Model Inference Server
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+Environment="S3_BUCKET=YOUR_BUCKET_NAME"
+Environment="AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY_ID"
+Environment="AWS_SECRET_ACCESS_KEY=YOUR_SECRET_ACCESS_KEY"
+Environment="AWS_DEFAULT_REGION=us-east-1"
+ExecStart=/home/ubuntu/venv/bin/python /home/ubuntu/src/serve.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
